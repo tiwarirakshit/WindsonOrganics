@@ -1,0 +1,73 @@
+{{!-- admin navbar --}}
+{{>adminNavbar}}
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Main Content -->
+  <div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 mb-2 text-gray-800">Ordered Table</h1>
+      <p class="mb-4">Click here to print list <a target="_blank" href="#" onclick="window.print()">
+          <button id="singlebutton" name="singlebutton" class="btn btn-primary">Print</button></a></p>
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Ordered list {{path}} </h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <form action="/orderDetailController" method="post">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Useremail</th>
+                    <th>Ordered id</th>
+                    <th>Price</th>
+                    <th>status</th>
+                    <th>Confirmed</th>
+                    <th>Prepared</th>
+                    <th>Delivered</th>
+                    <th>Canceled</th>
+                    <th>Print Bill</th>
+                  </tr>
+                </thead>
+                {{#each orderDetails}}
+                <tbody>
+                  <tr>
+                    <td>{{this.email}}</td>
+                    <td>{{this.orderId}}</td>
+                    <td>{{this.totalPriceOfAllProducts}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-xs" href="/confirmed/{{this._id}}"><i class="fa fa-check"></i></a>
+                    </td>
+                    <td>
+                      <a class="btn btn-warning btn-xs" href="/dispatched/{{this._id}}"><i
+                          class="fa fa-spinner"></i></a>
+                    </td>
+                    <td>
+                      <a class="btn btn-success btn-xs" href="/delivered/{{this._id}}"><i
+                          class="fa fa-check-double"></i></a>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger btn-xs" href="/canceled/{{this._id}}"><i
+                          class="fa fa-window-close"></i></a>
+                    </td>
+                    <td>
+                      <a href="./docs/{{this.billPdf}}" class="btn btn-danger" download> Download</a>
+                    </td>
+                  </tr>
+                </tbody>
+                {{/each}}
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- container-fluid -->
+  </div>
+  <!-- End of Main Content -->
+  {{>adminFooter}}

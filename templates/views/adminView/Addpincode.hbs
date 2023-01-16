@@ -1,0 +1,71 @@
+{{>adminNavbar}}
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+  <!-- Main Content -->
+  <div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 mb-4 text-gray-800">Add pincode</h1>
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">city details </h6>
+              {{#if err }}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong> Error </strong>
+                {{err}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {{/if}}
+               {{#if msg }}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> success </strong>
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {{/if}}
+            </div>
+            <div class="card-body">
+              <form action="/AddNewPincode" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-9 control-label">city name</label>
+                  <div class="col-md-12">
+                    <input id="textinput" name="city" type="text" placeholder="Enter city name"
+                      class="form-control input-md">
+                  </div>
+                </div>
+                <!-- Search input-->
+                <div class="form-group">
+                  <label class="col-md-9 control-label">state name</label>
+                  <div class="col-md-12">
+                    <input id="textinput" name="state" type="text" placeholder="Enter state Name"
+                      class="form-control input-md">
+                  </div>
+                </div>
+                <!-- product quantity -->
+                <div class="form-group">
+                  <label class="col-md-9 control-label">pincode</label>
+                  <div class="col-md-12">
+                    <input id="textinput" name="pincode" type="number" placeholder="Enter pincode"
+                      class="form-control input-md">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-9">
+                    <button id="singlebutton" type="submit" class="btn btn-primary">add pincode</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--container-fluid -->
+  </div>
+  <!-- End of Main Content -->
+  {{>adminFooter}}

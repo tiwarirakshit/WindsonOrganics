@@ -1,0 +1,91 @@
+{{!-- // sign up --}}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+{{>Ecommlink}}
+<div class="clv_main_wrapper index_v3">
+    {{>Ecommnavbar}}
+    <!--Breadcrumb-->
+    <div class="breadcrumb_wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="breadcrumb_inner">
+                        <h3>Sign Up</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb_block">
+            <ul>
+                <li><a href="/">home</a></li>
+                <li>Sign up</li>
+            </ul>
+        </div>
+    </div>
+    <!--sign up -->
+    <div class="error_wrapper clv_section">
+        <div class="container">
+            <div class="signin_wrapper open_signin">
+                <div class="signup_inner shadow-lg rounded">
+                    <div class="signup_details">
+                        <h3>welcome to Dairy Farming!</h3>
+                        <p>Consectetur adipisicing elit sed do eiusmod por incididunt uttelabore et dolore magna aliqu.
+                        </p>
+                        <a href="/getlogin" class="clv_btn white_btn pop_signin">sign in</a>
+                        <ul>
+                            <li><a href="javascript:;"><span><i class="fa fa-facebook"
+                                            aria-hidden="true"></i></span></a></li>
+                            <li><a href="javascript:;"><span><i class="fa fa-twitter" aria-hidden="true"></i></span></a>
+                            </li>
+                            <li><a href="javascript:;"><span><i class="fa fa-linkedin"
+                                            aria-hidden="true"></i></span></a></li>
+                            <li><a href="javascript:;"><span><i class="fa fa-youtube-play"
+                                            aria-hidden="true"></i></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="signup_form_section">
+                        <h4>create account</h4>
+                        <br>
+                        <br>
+                        {{#if err }}
+                        <div class="alert alert-danger alert-dismissible  fade show " role="alert">
+                            <strong> Error </strong>
+                            {{err}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {{/if}}
+                        <form action="/signup" method="POST">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <div class="form_block shadow-lg rounded">
+                                <input type="text" class="form_field col-12 col-md-10 col-sm-8"
+                                    placeholder="Enter Full Name" name="username">
+                            </div>
+                            <div class="form_block shadow-lg rounded">
+                                <input type="email" class="form_field col-12 col-md-10 col-sm-8"
+                                    placeholder="Enter Your Email" name="email">
+                            </div>
+                            <div class="form_block shadow-lg rounded">
+                                <input type="password" class="form_field col-12 col-md-10 col-sm-8"
+                                    placeholder="Enter Your Password" name="password">
+                            </div>
+                            <div class="form_block shadow-lg rounded">
+                                <input type="password" class="form_field col-12 col-md-10 col-sm-8"
+                                    placeholder="Confirm Password" name="confirmpassword">
+                            </div>
+                            <div class="form_block ">
+                                <a href="/getlogin" style="color:green;font-weight:600;">Already have an account ?</a>
+                            </div>
+                            <button type="submit" class="clv_btn">sign up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Footer-->
+    {{>Ecommfooter}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>

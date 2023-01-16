@@ -1,0 +1,52 @@
+     {{!-- admin navbar  --}}
+{{>adminNavbar}}
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Pincode List</h1>
+          <p class="mb-4">Click here to print list <a target="_blank" href="#" onclick="window.print()"> <button id="singlebutton" name="singlebutton" class="btn btn-primary">Print</button></a></p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Pincode List</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      {{!-- <th>Product Id</th> --}}
+                      <th>city name</th>
+                      <th>state name</th>
+                      <th>pincode</th>
+                      <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each  pincode}}
+                    <tr>
+                      {{!-- <th scope="product">{{this._id}}</th> --}}
+                      <td>{{this.city}}</td>
+                      <td>{{this.state}}</td>
+                      <td>{{this.pincode}}</td>
+                      <td><a class="btn btn-danger btn-xs" href="/deletePincode/{{this._id}}"><i class="fa fa-trash"></i></a></td>      
+                    </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+               {{!-- admin footer --}}
+    {{>adminFooter}}

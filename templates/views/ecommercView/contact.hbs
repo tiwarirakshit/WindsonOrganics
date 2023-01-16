@@ -1,0 +1,280 @@
+{{!-- contact page --}}
+
+{{>Ecommlink}}
+<div class="clv_main_wrapper index_v3">
+    {{>Ecommnavbar}}
+    <!--Breadcrumb-->
+    <div class="breadcrumb_wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="breadcrumb_inner">
+                        <h3>contact us</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb_block">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li>contact us</li>
+            </ul>
+        </div>
+    </div>
+    <!--Contact Block-->
+    <div class="contact_blocks_wrapper clv_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="contact_block">
+                        <span></span>
+                        <div class="contact_icon"><img src="images/contact_icon1.png" alt="image" /></div>
+                        <h4>contact us</h4>
+                        <p>+1-202-555-0101</p>
+                        <p>+1-202-555-0132</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="contact_block">
+                        <span></span>
+                        <div class="contact_icon"><img src="images/contact_icon2.png" alt="image" /></div>
+                        <h4>email</h4>
+                        <p>dairyfarming@example.com</p>
+                        <p>support@example.in</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="contact_block">
+                        <span></span>
+                        <div class="contact_icon"><img src="images/contact_icon3.png" alt="image" /></div>
+                        <h4>address</h4>
+                        <p>8654 Bellevue Drive</p>
+                        <p>Rock Hill, SC 29730</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Contact Form-->
+    <div class="contact_form_wrapper clv_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <div class="contact_form_section">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <h3>send message us</h3>
+                                {{#if err }}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong> Error </strong>
+                                    {{err}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                {{/if}}
+                                <!-- if someone tried to access a protected route  -->
+                                <!-- this flash message will show them to login first  -->
+                                {{#if msg }}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong> success </strong>
+                                    {{msg}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                {{/if}}
+                            </div>
+                            <form action="/emailSender" method="POST">
+                                <input type="hidden" name="_csrf" value="{{csrfToken }}">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form_block">
+                                        <input type="text" name="name" class="form_field require"
+                                            value="{{user.username}}" placeholder=" Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form_block">
+                                        <input type="text" name="phone" value="{{user.phone}}"
+                                            class="form_field require" placeholder="Phone number">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form_block">
+                                        <input type="text" name="email" value="{{user.email}}"
+                                            class="form_field require" placeholder="Email" data-valid="email"
+                                            data-error="Email should be valid.">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form_block">
+                                        <input type="text" name="subject" class="form_field require"
+                                            placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form_block">
+                                        <textarea placeholder="Message" name="message"
+                                            class="form_field require"></textarea>
+                                        <div class="response"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form_block">
+                                        <button type="submit" class="clv_btn submitForm">send</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="working_time_section">
+                        <div class="timetable_block">
+                            <h5>working hours</h5>
+                            <ul>
+                                <li>
+                                    <p>monday</p>
+                                    <p>9:30 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>tuesday</p>
+                                    <p>9:00 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>wednesday</p>
+                                    <p>9:45 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>thursday</p>
+                                    <p>10:30 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>friday</p>
+                                    <p>9:30 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>saturday</p>
+                                    <p>9:30 am - 6:00 pm</p>
+                                </li>
+                                <li>
+                                    <p>sunday</p>
+                                    <p>close</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tollfree_block">
+                            <h5>toll free number</h5>
+                            <h3>+1-202-555-0101</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Contact Map-->
+    <div class="contact_map_wrapper">
+        <div id="map"></div>
+    </div>
+
+    <!--Footer-->
+
+    {{>Ecommfooter}}
+
+</div>
+
+</body>
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 40.674, lng: -73.945 },
+            zoom: 12,
+            styles: [
+                { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+                { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                {
+                    featureType: 'administrative.locality',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#d59563' }]
+                },
+                {
+                    featureType: 'poi',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#d59563' }]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#263c3f' }]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#6b9a76' }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#38414e' }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry.stroke',
+                    stylers: [{ color: '#212a37' }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#9ca5b3' }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#746855' }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry.stroke',
+                    stylers: [{ color: '#1f2835' }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#f3d19c' }]
+                },
+                {
+                    featureType: 'transit',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#2f3948' }]
+                },
+                {
+                    featureType: 'transit.station',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#d59563' }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#17263c' }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#515c6d' }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.stroke',
+                    stylers: [{ color: '#17263c' }]
+                }
+            ]
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBY6rgnfIZd8qdQ9a3bxM4rkkCK9e7Uy-4&callback=initMap" async
+    defer></script>
+{{!--
+<script src="js/custom.js"></script> --}}
+
+</html>

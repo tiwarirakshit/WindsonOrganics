@@ -1,0 +1,84 @@
+{{!-- order details page --}}
+{{>Ecommlink}}
+</head>
+
+<body class="woocommerce-cart">
+    <div class="clv_main_wrapper index_v3">
+        {{>Ecommnavbar}}
+        <!--Breadcrumb-->
+        <div class="breadcrumb_wrapper">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="breadcrumb_inner">
+                            <h3>Order Details</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb_block">
+                <ul>
+                    <li><a href="/">home</a></li>
+                    <li>Order Details</li>
+                </ul>
+            </div>
+        </div>
+        <!--Cart Single-->
+        <div class="cart_single_wrapper clv_section">
+            <div class="container">
+                <div class="cart_table_section table-responsive">
+                    <div class="table_heading">
+                        <h3>Order Details</h3>
+                        <h4> Ordered items </h4>
+                    </div>
+                    <table class=" cart_table table-responsive woocommerce-cart-form__contents">
+                        <tr>
+                            <th>Order Id</th>
+                            <th>No of Products</th>
+                            <th>Price</th>
+                            <th>Order Date</th>
+                            <th>Status</th>
+                        </tr>
+                        {{#each OrderDetail}}
+                        <tr>
+                            <td>
+                                <div class="pro_price">
+                                    <h5>{{this.orderId}}</h5>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="pro_price">
+                                    <h5>{{this.totalQtyOfAllProducts}}</h5>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="pro_price">
+                                    <h5>{{this.totalPriceOfAllProducts}}</h5>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="pro_price">
+                                    <h5>
+                                        {{this.OrderDate}}
+                                    </h5>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="pro_price">
+                                    <h5>{{this.status}}</h5>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    <div class="checkout_btn_block">
+                        <a href="/category" class="clv_btn checkout-button">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer-->
+        {{>Ecommfooter}}

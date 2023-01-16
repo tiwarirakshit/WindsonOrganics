@@ -1,0 +1,127 @@
+{{!-- my account page --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+{{>Ecommlink}}
+<div class="clv_main_wrapper index_v3">
+    {{>Ecommnavbar}}
+    <!--Breadcrumb-->
+    <div class="breadcrumb_wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="breadcrumb_inner">
+                        <h3>profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb_block">
+            <ul>
+                <li><a href="/">home</a></li>
+                <li>profile</li>
+            </ul>
+        </div>
+    </div>
+    <!--User Profile-->
+    <div class="user_profile_wrapper clv_section">
+        <div class="container">
+            <div class="user_profile_section">
+
+
+                <div class="profile_image_block">
+                    <div class="user_profile_img">
+                        <img src="images/user_profile.jpg" alt="image">
+                        <input type="file" id="user_profile">
+                    </div>
+                </div>
+                <div class="checkout_heading">
+                    <h3>basic information</h3>
+                    <a href="#">
+                        edit profile
+                    </a>
+                </div>
+                <div class="profile_form">
+                    {{#if verified}}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>SUCCESS</strong> Email Verification Sucessfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {{else}}
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <strong>ATTENTION !</strong> Please verify your account to continue using our services.
+                        <a href="/sendVerificationEmail">Re-send Verification Email</a>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {{/if}}
+                    {{#if emailsent}}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>SUCCESS</strong> Verification Email Sent Sucessfully. Valid Only for 20 minutes.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {{/if}}
+
+
+                    {{#if err }}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>ERROR </strong>
+                        {{err}}.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {{/if}}
+                    {{#if user}}
+                    <div class="row">
+                        <form action="/updateUserProfile" method="post">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form_block">
+                                        <h6>first name</h6>
+                                        <input type="text" class="form_field" name="username" placeholder="username"
+                                            value="{{user.username}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form_block">
+                                        <h6>email</h6>
+                                        <input type="text" class="form_field" name="email"
+                                            placeholder="John@example.com" value="{{user.email}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form_block">
+                                        <h6>contact no.</h6>
+                                        <input type="text" class="form_field" name="phone"
+                                            placeholder="+(81) 16002-123-123" value="{{user.phone}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form_block">
+                                        <h6>address</h6>
+                                        <input class="form_field" name="address" value="{{user.address}}"
+                                            placeholder="Address">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="save_btn">
+
+                                    <button type="submit" class="clv_btn"> save</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>Ecommfooter}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>

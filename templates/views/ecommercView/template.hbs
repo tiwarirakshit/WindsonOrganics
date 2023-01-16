@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {{!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" --}} {{!--
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    --}}
+    <style>
+        #automatic {
+            display: none;
+        }
+
+        .clv_footer_wrapper {
+            padding-bottom: 0px !important;
+            padding-top: 0% !important;
+        }
+
+        .clv_newsletter_wrapper {
+            padding: 38px 60px 55px;
+            display: flex;
+            align-items: center;
+            background-color: #64a019;
+            border-radius: 20px;
+            margin-top: 101px;
+            margin-bottom: 17px !important;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    {{!-- blog --}}
+    {{>Ecommlink}}
+    <div class="clv_main_wrapper index_v3 about_page">
+        {{>Ecommnavbar}}
+        <div class="breadcrumb_wrapper">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="breadcrumb_inner">
+                            <h3>Confirm order</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb_block">
+                <ul>
+                    <li><a href="/">home</a></li>
+                    <li>Confirm order</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mt-5 d-flex justify-content-center">
+            <div class="row">
+                <div class="jumbotron" style="box-shadow: 2px 2px 4px #000000;">
+                    <h2 class="text-center">YOUR ORDER HAS BEEN RECEIVED</h2>
+                    <h3 class="text-center">Thank you for your payment, it’s processing</h3>
+                    <p class="text-center">Your order # is: {{orderID}}</p>
+                    <p class="text-center">You will receive an order confirmation email with details of your order and a
+                        link to track your process.</p>
+                    <center>
+                        <div class="btn-group" style="margin-top:50px;">
+                            <form method="POST" action="/success">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+                                <button id="rzp-button1" class="btn btn-lg btn-warning">Confirm your order</button>
+                                <input type="hidden" id="order-pay-id" name="payID" />
+                                <input type="hidden" id="order-id" name="orderID" />
+                                <input type="hidden" id="order-sig" name="sign" />
+                                <button type="hidden" id="automatic"></button>
+
+                                <input type="hidden" id="data.name" value="{{data.name}}" name="name" />
+                                <input type="hidden" id="data.email" value="{{data.email}}" name="email" />
+                                <input type="hidden" id="data.city" value="{{data.city}}" name="city" />
+                                <input type="hidden" id="data.state" value="{{data.state}}" name="state" />
+                                <input type="hidden" id="data.pincode" value="{{data.pincode}}" name="pincode" />
+                                <input type="hidden" id="data.name" value="{{data.phone}}" name="phone" />
+                                <input type="hidden" id="data.address" value="{{data.address}}" name="address" />
+                                <input type="hidden" id="data.totalQtyOfAllProducts"
+                                    value="{{data.totalQtyOfAllProducts}}" name="totalQtyOfAllProducts" />
+                                <input type="hidden" id="data.totalPriceOfAllProducts"
+                                    value="{{data.totalPriceOfAllProducts}}" name="totalPriceOfAllProducts" />
+                                <input type="hidden" id="data.items" value="{{data.items}}" name="items" />
+                                <input type="hidden" id="data.OrderPrice" value="{{data.OrderPrice}}"
+                                    name="OrderPrice" />
+
+                            </form>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>Ecommfooter}}
+    <script>
+        const payamount = `{{data.totalPriceOfAllProducts}}`
+        var options = {
+            "key": "rzp_test_k6LuoogxKOFhAh",
+            "amount": payamount,
+            "currency": "INR",
+            "name": "{{data.name}}",
+            "description": "Test Transaction",
+            "image": "/img/favicon.ico",
+            "order_id": "{{orderID}}",
+            "handler": function (response) {
+                document.getElementById('order-pay-id').value = response.razorpay_payment_id;
+                document.getElementById('order-id').value = response.razorpay_order_id;
+                document.getElementById('order-sig').value = response.razorpay_signature;
+                document.getElementById('automatic').click();
+            },
+            "prefill": {
+                "name": "{{data.name}}",
+                "email": "{{data.email}}",
+                "contact": "{{data.phone}}"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#528FF0"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+
+</html>
