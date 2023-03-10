@@ -29,7 +29,7 @@ require("./src/db/conn");
 
 const static_path = path.join(__dirname, "./public");
 const template_path = path.join(__dirname, "./templates/views");
-const partial_path = path.join(__dirname, "./templates/partials");
+const partial_path = path.join(__dirname, "/templates/partials");
 
 app.use(express.static(static_path));
 //! set Template engine
