@@ -25,7 +25,7 @@ app.use(cookieParser("random"));
 const server = http.createServer(app);
 
 // db
-require("/src/db/conn");
+require("./src/db/conn");
 
 const static_path = path.join(__dirname, "/public");
 const template_path = path.join(__dirname, "/templates/views");
@@ -41,7 +41,7 @@ hbs.registerPartials(partial_path);
 app.use(cookieParser("random"));
 
 // favicon
-app.use(favicon(path.join(__dirname, "/public", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "./public", "favicon.ico")));
 
 app.use(
   session({
@@ -82,10 +82,10 @@ app.use(function (req, res, next) {
 
 
 // ! ecommerce routes 
-app.use(require("/src/routes/routes"));
+app.use(require("./src/routes/routes"));
 
 // ! ecommerce routes 
-app.use(require("/src/routes/adminRoutes"));
+app.use(require("./src/routes/adminRoutes"));
 
 
 // catch 404 and forward to error handler
